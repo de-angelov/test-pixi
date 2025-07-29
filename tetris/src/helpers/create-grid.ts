@@ -1,5 +1,6 @@
 import { Container, Graphics } from "pixi.js";
 import { BORDER, CELL_SIZE, COLORS } from "../constants";
+import { setCounter } from "../services/counter";
 
 type InnerRectGridConfigT = {
 	rows?: number;
@@ -27,10 +28,27 @@ export const addInnerRectWithGrid = (config: InnerRectGridConfigT) => {
 					const y = rowIdx * CELL_SIZE.height;
 
 					cell
+						.clear()
 						.rect(x, y, CELL_SIZE.width, CELL_SIZE.height)
 						.stroke({ width: BORDER.width, color: COLORS.weak });
 
+
+					cell.eventMode = "static";
+					cell.cursor = "pointer";
+					// cell.cacheAsTexture(true);
+
+					cell.on("mouseover", () => {
+						cell
+							.fill({ color: COLORS.accent })
+							.stroke({ width: BORDER.width, color: COLORS.weak });
+						cell.eventMode = "none";
+
+						setCounter();
+					});
+
+
 					return cell;
+
 				}))
 			.flat();
 

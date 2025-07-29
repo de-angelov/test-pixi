@@ -1,4 +1,5 @@
 import { CELL_SIZE, COLORS } from "./constants";
+
 import { initApp } from "./initCanvas"
 const tw = {
 	container: "p-5 gap-x-5 flex-col flex justify-center ",
@@ -28,6 +29,7 @@ const pixiApp = await initApp(
 		backgroundAlpha: 0.5,
 		backgroundColor: COLORS.secondary,
 	});
+
 
 
 
